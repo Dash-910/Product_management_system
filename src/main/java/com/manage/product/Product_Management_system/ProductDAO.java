@@ -26,7 +26,7 @@ public class ProductDAO {
 			pstmt.setString(3, pt.getProductBrand());
 			pstmt.setString(4, pt.getProductPlace());
 			pstmt.setInt(5, pt.getProductWarranty());
-			pstmt.setDouble(5, pt.getProductPrice());
+			pstmt.setDouble(6, pt.getProductPrice());
 			
 			pstmt.executeUpdate();
 			flag = true;
@@ -91,7 +91,7 @@ public class ProductDAO {
 		}
 	}
 	//Update a Product info
-	public static boolean updateProduct(int productId, String newName, String newType, String newBrand, String newPlace, String newWarranty, String newPrice) {
+	public static boolean updateProduct(int productId, String newName, String newType, String newBrand, String newPlace, int newWarranty, double newPrice) {
 	    boolean flag = false;
 	    try {
 	        Connection con = CP.createC();
@@ -102,8 +102,8 @@ public class ProductDAO {
 	        pstmt.setString(2, newType);
 	        pstmt.setString(3, newBrand);
 	        pstmt.setString(4, newPlace);
-	        pstmt.setString(5, newWarranty);
-	        pstmt.setDouble(6, Double.parseDouble(newPrice)); 
+	        pstmt.setInt(5, newWarranty);
+	        pstmt.setDouble(6, newPrice); 
 	        pstmt.setInt(7, productId);
 
 	        int rowsAffected = pstmt.executeUpdate();
@@ -119,7 +119,7 @@ public class ProductDAO {
 	    return flag;
 	}
 	//To check if product exits before updating
-	public static boolean inProdcutExists(int productId)
+	public static boolean inProductExists(int productId)
 	{
 		boolean exists = false;
 		try {
